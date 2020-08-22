@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   root 'welcome#index'
-  resources :user_stocks
+  resources :user_stocks, only: [:create]
   get 'stocks/search'
   devise_for :users
   get 'my_portfolio', to: 'users#my_portfolio'
