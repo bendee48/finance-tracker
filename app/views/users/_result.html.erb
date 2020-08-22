@@ -1,0 +1,13 @@
+<div style="max-width: 18rem;">
+  <%= render 'layouts/messages' %>
+</div>
+
+<% if @stock %>
+  <div class="card bg-light mb-3" style="max-width: 18rem;">
+    <div class="card-body">
+      <strong>Symbol: </strong><p class="card-text"><%= @stock.ticker.upcase %></p>
+      <strong>Name: </strong><p class="card-text"><%= @stock.name %></p>
+      <strong>Latest Price: </strong><p class="card-text"><%= @stock.price %></p>
+    </div>
+  </div>
+<% end %>

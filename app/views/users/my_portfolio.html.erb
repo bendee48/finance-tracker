@@ -3,19 +3,11 @@
 
 <h3>Search Stocks</h3>
 
-<%= form_with url: search_stocks_path, method: :get, local: true, class: "form-inline" do |f| %>
+<%= form_with url: search_stocks_path, method: :get, class: "form-inline" do |f| %>
   <%= f.text_field 'ticker', class: "form-control mb-2 mr-sm-2" %>
   <%= f.button type: :submit, class: "btn btn-primary mb-2" do %>
     <%= fa_icon "chevron-right" %>
   <% end %>
 <% end %>
 
-<% if @stock %>
-  <div class="card bg-light mb-3" style="max-width: 18rem;">
-    <div class="card-body">
-      <strong>Symbol: </strong><p class="card-text"><%= @stock.ticker.upcase %></p>
-      <strong>Name: </strong><p class="card-text"><%= @stock.name %></p>
-      <strong>Latest Price: </strong><p class="card-text"><%= @stock.price %></p>
-    </div>
-  </div>
-<% end %>
+<div id="results"></div>

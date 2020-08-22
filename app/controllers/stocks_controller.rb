@@ -3,14 +3,20 @@ class StocksController < ApplicationController
     if params[:ticker].present?
       @stock = Stock.look_up(params[:ticker])
       if @stock
-        render 'users/my_portfolio'
+        respond_to do |format|
+          format.js { render partial: 'users/result' }
+        end
       else
-        flash.alert = "Invalid ticker symbol."
-        redirect_to my_portfolio_path
+        respond_to do |format|
+          flash.now.alert = "Invalid ticker symbol."
+          format.js { render partial: 'users/result' }
+        end
       end
     else
-      flash.alert = "Search field can't be blank."
-      redirect_to my_portfolio_path
+      respond_to do |format|
+        flash.now.alert = "Search field can't be blank."
+        format.js { render partial: 'users/result' }
+      end
     end
   end
 end
