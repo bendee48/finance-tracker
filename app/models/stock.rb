@@ -1,8 +1,12 @@
 class Stock < ApplicationRecord
-  has_many :user_stocks
+  has_many :user_stocks, dependent: :destroy
   has_many :users, through: :user_stocks
 
   validates :name, :ticker, presence: true
+
+  before_save do
+    ticker.upcase!
+  end
 
   def self.look_up(ticker_symbol)
     client = IEX::Api::Client.new(

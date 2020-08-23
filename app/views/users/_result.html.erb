@@ -8,7 +8,13 @@
       <strong>Symbol: </strong><p class="card-text"><%= @stock.ticker.upcase %></p>
       <strong>Name: </strong><p class="card-text"><%= @stock.name %></p>
       <strong>Latest Price: </strong><p class="card-text"><%= @stock.price %></p>
-      <%= link_to 'Add to Portfolio', user_stocks_path(ticker: @stock.ticker), method: :post %>
+      <% if current_user.tracked?(@stock.ticker) %>
+        <small class="badge badge-warning">Stock already being tracked</small>
+      <% elsif current_user.tracked_limit? %>
+        <small class="badge badge-warning">Reached limit for tracked stock.</small>
+      <% else %>
+        <%= link_to 'Add to Portfolio', user_stocks_path(ticker: @stock.ticker), method: :post, class: "btn btn-outline-success" %>
+      <% end %>
     </div>
   </div>
 <% end %>
