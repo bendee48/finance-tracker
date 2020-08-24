@@ -1,0 +1,19 @@
+<h1>Friendships#index</h1>
+<p>Find me in app/views/friendships/index.html.erb</p>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Firstname</th>
+      <th scope="col">Lastname</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @friends.each do |friend| %>
+      <tr>
+        <td><%= friend.firstname %></td>
+        <td><%= friend.lastname %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
