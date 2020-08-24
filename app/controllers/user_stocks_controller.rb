@@ -11,4 +11,12 @@ class UserStocksController < ApplicationController
     flash.notice = "Stock #{stock.name} succesfully added to your portfolio."
     redirect_to my_portfolio_path
   end
+
+  def destroy
+    stock = Stock.find(params[:id])
+    userstock = UserStock.find_by(user_id: current_user.id, stock_id: stock.id)
+    userstock.destroy
+    flash.notice = "#{stock.name} removed from tracked list."
+    redirect_to my_portfolio_path
+  end
 end
