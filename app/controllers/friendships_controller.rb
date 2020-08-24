@@ -3,6 +3,16 @@ class FriendshipsController < ApplicationController
     @friends = current_user.friends
   end
 
+  def create
+    friendship = current_user.friendships.build(friend_id: params[:friend])
+    if friendship.save
+      flash.notice = "You are now friends."
+    else
+      flash.notice = "Something went wrong."
+    end
+    redirect_to friends_path
+  end
+
   def search
     if params[:friend].present?
       @users = User.search(params[:friend], current_user)
