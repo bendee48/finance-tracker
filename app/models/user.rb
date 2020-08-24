@@ -13,4 +13,8 @@ class User < ApplicationRecord
   def tracked_limit?
     stocks.count > 9
   end
+
+  def full_name
+    "#{firstname} #{lastname}"
+  end
 end

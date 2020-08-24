@@ -18,6 +18,9 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <% if user_signed_in? %>
+              <%= link_to edit_user_registration_path, class: "dropdown-item" do %>
+                <%= fa_icon "edit" %> Edit Account
+              <% end %>
               <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "dropdown-item" %>
             <% else %>
               <%= link_to 'Log In', user_session_path, class: "dropdown-item" %>
@@ -26,6 +29,16 @@
           </div>
         </li>
       </ul>
+      <% if user_signed_in? %>
+        <ul class="navbar-nav ml-auto">
+          <%= fa_icon "user", class: "nav-item my-2 mr-2" %>
+          <% if current_user.firstname || current_user.lastname %>
+            <li class="nav-item my-2 ml-auto mr-4"><%= current_user.full_name %></li>
+          <% else %>
+            <li class='nav-item my-2 mr-4'>Anonymous</li>
+          <% end %>
+        </ul>
+      <% end %>
       <form class="form-inline my-2 my-lg-0">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
