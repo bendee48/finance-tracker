@@ -1,0 +1,17 @@
+<div style="max-width: 22rem;">
+  <%= render 'layouts/messages' %>
+</div>
+
+<% if @users %>
+  <table class="table table-sm table-success user-search">
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><strong>First name: </strong> <%= user.full_name.titleize %></td>
+          <td><strong>Actions: </strong> <%= link_to 'Profile', '#', class: "btn btn-info btn-sm" %></td>
+          <td><%= link_to 'Follow?', '#', class: "btn btn-info btn-sm" %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

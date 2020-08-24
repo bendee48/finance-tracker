@@ -1,6 +1,16 @@
 <h1>Friendships#index</h1>
 <p>Find me in app/views/friendships/index.html.erb</p>
 
+<h3>Search Friends</h3>
+<%= form_with url: search_friends_path, method: :get, class: "form-inline" do |f| %>
+  <%= f.text_field 'friend', placeholder: "Search by name or email", class: "form-control mb-2 mr-sm-2" %>
+  <%= f.button type: :submit, class: "btn btn-primary mb-2" do %>
+    <%= fa_icon "chevron-right" %>
+  <% end %>
+<% end %>
+
+<div id="results"></div>
+
 <table class="table table-striped">
   <thead>
     <tr>

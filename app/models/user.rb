@@ -8,6 +8,14 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :friends, through: :friendships
 
+  def self.search(query, current_user)
+    query.downcase!
+    where('lower(email) LIKE ?', "%#{query}%" )
+      .or(where('lower(firstname) LIKE ?', "%#{query}%"))
+      .or(where('lower(lastname) LIKE ?', "%#{query}%"))
+      .where.not(id: current_user.id)
+  end
+
   def tracked?(ticker)
     stocks.find_by(ticker: ticker.upcase).present?
   end
