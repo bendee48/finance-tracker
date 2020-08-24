@@ -23,4 +23,11 @@ class FriendshipsController < ApplicationController
       end
     end
   end
+
+  def destroy
+    friendship = Friendship.find_by(friend_id: params[:id])
+    friendship.destroy
+    flash.notice = "Friendship removed."
+    redirect_to friends_path
+  end
 end

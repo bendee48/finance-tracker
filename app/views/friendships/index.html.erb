@@ -16,6 +16,7 @@
     <tr>
       <th scope="col">Firstname</th>
       <th scope="col">Lastname</th>
+      <th scope="col">Actions</th>
     </tr>
   </thead>
   <tbody>
@@ -23,6 +24,9 @@
       <tr>
         <td><%= friend.firstname %></td>
         <td><%= friend.lastname %></td>
+        <td><%= link_to 'Remove Friend', friendship_path(friend), method: :delete, data: { confirm: "Are you sure?" },
+                                                                  class: "btn btn-danger btn-sm" %>
+        </td>
       </tr>
     <% end %>
   </tbody>

@@ -3,13 +3,17 @@
 </div>
 
 <% if @users %>
-  <table class="table table-sm table-success user-search">
+  <table class="table table-sm user-search">
     <tbody>
       <% @users.each do |user| %>
         <tr>
           <td><strong>First name: </strong> <%= user.full_name.titleize %></td>
           <td><strong>Actions: </strong> <%= link_to 'Profile', '#', class: "btn btn-info btn-sm" %></td>
-          <td><%= link_to 'Follow?', '#', class: "btn btn-info btn-sm" %></td>
+          <% if current_user.friends?(user) %>
+            <td><span class="badge badge-warning">Already Friends</span></td>
+          <% else %>
+            <td><%= link_to 'Follow?', '#', class: "btn btn-info btn-sm" %></td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

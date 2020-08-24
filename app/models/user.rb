@@ -27,4 +27,8 @@ class User < ApplicationRecord
   def full_name
     "#{firstname} #{lastname}"
   end
+
+  def friends?(friend)
+    friends.where(id: friend.id).exists?
+  end
 end
