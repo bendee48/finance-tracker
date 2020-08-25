@@ -8,7 +8,7 @@
       <% @users.each do |user| %>
         <tr>
           <td><strong>First name: </strong> <%= user.full_name.titleize %></td>
-          <td><strong>Actions: </strong> <%= link_to 'Profile', '#', class: "btn btn-info btn-sm" %></td>
+          <td><strong>Actions: </strong> <%= link_to 'Profile', user_path(user), class: "btn btn-info btn-sm" %></td>
           <% if current_user.friends?(user) %>
             <td><span class="badge badge-warning">Already Friends</span></td>
           <% else %>

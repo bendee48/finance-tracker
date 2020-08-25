@@ -1,0 +1,22 @@
+<h1><%= @user.full_name %>'s Page</h1>
+
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title"><%= @user.full_name %></h5>
+    <% if current_user.friends?(@user) %>
+      <td><span class="badge badge-warning">Already Friends</span></td>
+    <% else %>
+      <td><%= link_to 'Follow?', friendships_path(friend: @user), method: :post, class: "btn btn-info btn-sm" %></td>
+    <% end %>
+  </div>
+</div>
+
+<% if current_user.friends?(@user) %>
+  <% if @tracked_stocks.present? %>
+    <%= render 'stocks/tracked_list' %>
+  <% else %>
+    <p class="mt-4">This user is not currently tracking any stocks.</p>  
+  <% end %>
+<% else %>
+  <p class="mt-4">Friend this user to see their tracked stocks.</p>
+<% end %>

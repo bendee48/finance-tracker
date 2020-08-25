@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get 'friends', to: 'friendships#index'
   get 'search_friends', to: 'friendships#search'
   devise_for :users
+  resources :users, only: [:show]
   get 'my_portfolio', to: 'users#my_portfolio'
   get 'search_stocks', to: 'stocks#search'
 end
